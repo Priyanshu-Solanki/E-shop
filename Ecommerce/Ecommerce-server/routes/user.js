@@ -7,7 +7,7 @@ router.put("/:id", verifyTokenAndAuthorization, async (req, res) => {
     if (req.body.password) {
         req.body.password = CryptoJS.AES.encrypt(req.body.password, process.env.PASSWORD_SEC).toString()
     }
-
+    console.log(req.body)
     try {
         const updatedUser = await User.findByIdAndUpdate(req.params.id, {
             $set: req.body
